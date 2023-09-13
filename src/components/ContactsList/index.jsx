@@ -4,10 +4,10 @@ import { Button } from 'components/App.styled';
 const ContactsList = ({ contacts, onDeleteContact }) => {
   return (
     <ListStyled>
-      {contacts.map(({ id, name, number }) => (
+      {contacts.map(({ id, userName, number }) => (
         <ListItem key={id}>
           <ListItemText>
-            {name}: {number}
+            {userName}: {number}
           </ListItemText>
           <Button onClick={() => onDeleteContact(id)}>delete</Button>
         </ListItem>
