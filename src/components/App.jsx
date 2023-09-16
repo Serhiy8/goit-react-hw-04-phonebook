@@ -16,7 +16,7 @@ export const App = () => {
   const [contacts, setContacts] = useState(
     () => JSON.parse(localStorage.getItem('Contacts')) ?? [...contactsDefault]
   );
-  const [filter, setFilter] = useState('');
+  const [filterValue, setFilter] = useState('');
 
   useEffect(() => {
     localStorage.setItem('Contacts', JSON.stringify(contacts));
@@ -45,7 +45,7 @@ export const App = () => {
   };
 
   const visibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
+    const normalizedFilter = filterValue.toLowerCase();
     return contacts.filter(({ userName }) =>
       userName.toLowerCase().includes(normalizedFilter)
     );
@@ -55,7 +55,7 @@ export const App = () => {
     <Container>
       <FormPhonebook onSubmit={formSubmitHandler} />
       <h2>Contacts</h2>
-      <FilterByName value={filter} onChange={changeFilter} />
+      <FilterByName value={filterValue} onChange={changeFilter} />
       <ContactsList
         contacts={visibleContacts()}
         onDeleteContact={deleteContact}
